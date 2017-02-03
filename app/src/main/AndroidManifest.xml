@@ -15,12 +15,6 @@
 
 
         <!-- Declares 2nd activity -->
-        <activity
-            android:name="rs.aleph.android.example12.activities.ThirdActivity"
-            android:label="iReviewer"
-            android:icon="@mipmap/ic_launcher">
-
-        </activity>
 
         <activity
             android:name="rs.aleph.android.example12.activities.SecondActivity"
