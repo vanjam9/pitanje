@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,6 +13,8 @@ import android.graphics.drawable.Drawable;
 import java.io.InputStream;
 import java.io.InputStream;
 import java.io.IOException;
+import java.util.List;
+
 import rs.aleph.android.example12.R;
 
 // Each activity extends Activity class
@@ -39,29 +43,43 @@ public class SecondActivity extends Activity {
         //Toast toast = Toast.makeText(getBaseContext(), "Activity.onStart()", Toast.LENGTH_SHORT);
         //toast.show();
     //}
-    Jelo j = new Jelo("jastog.jpg","Jastog","Res pecen", "Glavno jelo", "Rak iz mora",8, 150.00);
+        final int position = getIntent().getIntExtra("position", 0);
 
+        // Finds "ivImage" ImageView and sets "imageDrawable" property
+        ImageView ivImage = (ImageView) findViewById(R.id.iv_image);
+        InputStream is = null;
+        try {
+            is = getAssets().open(JeloProvajder.getJeloById(position).getSlika());
+            Drawable drawable = Drawable.createFromStream(is, null);
+            ivImage.setImageDrawable(drawable);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-    ImageView ivImage = (ImageView)findViewById(R.id.iv_image);
-    ivImage.setImageResource(R.drawable.jastog);
+        Spinner kategorijama = (Spinner) findViewById(R.id.sp_category);
+        List<String> kategorijamaList = KategorijamaProvajder.getKategorijamaNames();
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, (List) kategorijama);
+        kategorijama.setAdapter(adapter);
+        kategorijama.setSelection((int)JeloProvajder.getJeloById(position).getKategorijama().getId());
+ //   ImageView ivImage = (ImageView)findViewById(R.id.iv_image);
+   // ivImage.setImageResource(R.drawable.jastog);
 
         TextView tvIme = (TextView) findViewById(R.id.tv_ime);
-    tvIme.setText(j.getIme());
+    tvIme.setText(JeloProvajder.getJeloById(position).getIme());
 
     TextView tvOpis = (TextView) findViewById(R.id.tv_opis);
-    tvOpis.setText(j.getOpis());
+    tvOpis.setText(JeloProvajder.getJeloById(position).getOpis());
 
     TextView tvSastojci = (TextView) findViewById(R.id.tv_sastojci);
-    tvSastojci.setText(j.getSastojci());
+    tvSastojci.setText(JeloProvajder.getJeloById(position).getSastojci());
 
-    TextView tvKategorija = (TextView) findViewById(R.id.tv_kategorija);
-    tvKategorija.setText(j.getKategorija());
+
 
     TextView tvKalorije = (TextView) findViewById(R.id.tv_kalorije);
-    tvKalorije.setText(Integer.toString(j.getKalorije()));
+    tvKalorije.setText(Integer.toString(JeloProvajder.getJeloById(position).getKalorije()));
 
     TextView tvCena = (TextView) findViewById(R.id.tv_cena);
-                tvCena.setText(Double.toString(j.getCena()));
+                tvCena.setText(Double.toString(JeloProvajder.getJeloById(position).getCena()));
 
                 }
     // onRestart method is a lifecycle method called after onStop when the current activity is

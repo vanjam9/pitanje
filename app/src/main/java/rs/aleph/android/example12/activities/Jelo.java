@@ -2,31 +2,54 @@ package rs.aleph.android.example12.activities;
 
 import android.app.Activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by va on 2/1/2017.
  */
 
-public class Jelo extends Activity {
+public class Jelo {
 
     private int id;
-    private String slika,ime,opis,kategorija,sastojci;
+    private String slika,ime,opis,sastojci;
     private int kalorije;
      private double cena;
+private Kategorijama kategorijama;
+    private List<Sastojci> sastojciList;
 
+    public Kategorijama getKategorijama() {
+        return kategorijama;
+    }
 
-    public Jelo(String slika, String ime, String opis, String kategorija, String sastojci, int kalorije, double cena) {
+    public void setKategorijama(Kategorijama kategorijama) {
+        this.kategorijama = kategorijama;
+    }
 
+    public List<Sastojci> getSastojciList() {
+        return sastojciList;
+    }
+
+    public void setSastojciList(List<Sastojci> sastojciList) {
+        this.sastojciList = sastojciList;
+    }
+
+    public Jelo(int id, String slika, String ime, String opis, String sastojci, int kalorije, double cena, Kategorijama kategorijama) {
+        this.id=id;
         this.slika = slika;
         this.ime = ime;
         this.opis = opis;
-        this.kategorija = kategorija;
         this.sastojci = sastojci;
         this.kalorije = kalorije;
         this.cena = cena;
+
+        this.kategorijama=kategorijama;
+        sastojciList=new ArrayList<>();
+
     }
 
-    public Jelo() {
-
+    public Jelo(int i, String s, String jastog, String opis, String sastojci, int i1, int i2) {
+        sastojciList=new ArrayList<>();
     }
 
     public int getId() {
@@ -61,13 +84,7 @@ public class Jelo extends Activity {
         this.opis = opis;
     }
 
-    public String getKategorija() {
-        return kategorija;
-    }
 
-    public void setKategorija(String kategorija) {
-        this.kategorija = kategorija;
-    }
 
     public String getSastojci() {
         return sastojci;
@@ -92,4 +109,6 @@ public class Jelo extends Activity {
     public void setCena(double cena) {
         this.cena = cena;
     }
+
+
 }
