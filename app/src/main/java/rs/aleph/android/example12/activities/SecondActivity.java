@@ -58,7 +58,7 @@ public class SecondActivity extends Activity {
 
         Spinner kategorijama = (Spinner) findViewById(R.id.sp_category);
         List<String> kategorijamaList = KategorijamaProvajder.getKategorijamaNames();
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, (List) kategorijama);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, kategorijamaList);
         kategorijama.setAdapter(adapter);
         kategorijama.setSelection((int)JeloProvajder.getJeloById(position).getKategorijama().getId());
  //   ImageView ivImage = (ImageView)findViewById(R.id.iv_image);

@@ -17,7 +17,6 @@ public class JeloProvajder {
 
         List<Jelo> jeloList = new ArrayList<>();
         jeloList.add(new Jelo(0, "apples.jpg", "Jastog","opis","sastojci",7,88, SlanaJ));
-
         jeloList.add(new Jelo(1, "bananas.jpg", "Bananas","opis","sastojci",8,55 , SlatkaJ));
         jeloList.add(new Jelo(2, "oranges.jpg", "Burito", "opis","sastojci",44,677 , LjutaJ));
         return jeloList;
