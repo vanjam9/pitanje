@@ -16,7 +16,7 @@ public class Jelo {
     private int kalorije;
      private double cena;
 private Kategorijama kategorijama;
-    private List<Sastojci> sastojciList;
+
 
     public Kategorijama getKategorijama() {
         return kategorijama;
@@ -26,13 +26,9 @@ private Kategorijama kategorijama;
         this.kategorijama = kategorijama;
     }
 
-    public List<Sastojci> getSastojciList() {
-        return sastojciList;
-    }
 
-    public void setSastojciList(List<Sastojci> sastojciList) {
-        this.sastojciList = sastojciList;
-    }
+
+
 
     public Jelo(int id, String slika, String ime, String opis, String sastojci, int kalorije, double cena, Kategorijama kategorijama) {
         this.id=id;
@@ -44,12 +40,12 @@ private Kategorijama kategorijama;
         this.cena = cena;
 
         this.kategorijama=kategorijama;
-        sastojciList=new ArrayList<>();
+
 
     }
 
     public Jelo(int i, String s, String jastog, String opis, String sastojci, int i1, int i2) {
-        sastojciList=new ArrayList<>();
+
     }
 
     public int getId() {

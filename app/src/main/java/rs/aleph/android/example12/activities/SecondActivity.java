@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ImageView;
@@ -72,7 +73,6 @@ public class SecondActivity extends Activity {
 
     TextView tvSastojci = (TextView) findViewById(R.id.tv_sastojci);
     tvSastojci.setText(JeloProvajder.getJeloById(position).getSastojci());
-
 
 
     TextView tvKalorije = (TextView) findViewById(R.id.tv_kalorije);

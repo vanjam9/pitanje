@@ -12,9 +12,9 @@ public class KategorijamaProvajder {
     public static List<Kategorijama> getKategorijama() {
 
         List<Kategorijama> kategorijamaList = new ArrayList<>();
-        kategorijamaList.add(new Kategorijama(0, "Rose"));
-        kategorijamaList.add(new Kategorijama(1, "Citrus"));
-        kategorijamaList.add(new Kategorijama(2, "Berry"));
+        kategorijamaList.add(new Kategorijama(0, "SlanaJ"));
+        kategorijamaList.add(new Kategorijama(1, "SlatkaJ"));
+        kategorijamaList.add(new Kategorijama(2, "LjutaJ"));
         return kategorijamaList;
     }
 
@@ -24,7 +24,7 @@ public class KategorijamaProvajder {
         names.add("SlatkaJ");
         names.add("LjutaJ");
         return names;
-    }
+    }/*
 
     public static Kategorijama getKategorijama(int id) {
         switch (id) {
@@ -38,5 +38,5 @@ public class KategorijamaProvajder {
                 return null;
         }
     }
-
+*/
 }

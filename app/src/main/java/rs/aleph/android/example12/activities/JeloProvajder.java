@@ -16,16 +16,16 @@ public class JeloProvajder {
         Kategorijama LjutaJ = new Kategorijama(2, "LjutaJ");
 
         List<Jelo> jeloList = new ArrayList<>();
-        jeloList.add(new Jelo(0, "apples.jpg", "Jastog","opis","sastojci",7,88, SlanaJ));
-        jeloList.add(new Jelo(1, "bananas.jpg", "Bananas","opis","sastojci",8,55 , SlatkaJ));
-        jeloList.add(new Jelo(2, "oranges.jpg", "Burito", "opis","sastojci",44,677 , LjutaJ));
+        jeloList.add(new Jelo(0, "jastog.jpg", "Jastog","plod mora a i ne mora","rak,majonez,so",7,88, SlanaJ));
+        jeloList.add(new Jelo(1, "bananas.jpg", "Bananas","pecena banana","jaja,brasno,secer,platano",8,55 , SlatkaJ));
+        jeloList.add(new Jelo(2, "burito.jpg", "Burito", "sendvic u tortilji","tortilja,meso,cili",44,677 , LjutaJ));
         return jeloList;
     }
 
     public static List<String> getJelaNames() {
 
         List<String> names = new ArrayList<>();
-        names.add("Jastog");
+        names.add("jastog");
         names.add("Bananas");
         names.add("Burito");
         return names;
@@ -39,11 +39,11 @@ public class JeloProvajder {
 
         switch (id) {
             case 0:
-                return new Jelo(0, "apples.jpg", "Jastog","opis","sastojci",7,88, SlanaJ);
+                return new Jelo(0, "jastog.jpg", "Jastog","plod mora a i ne mora","rak,majonez,so",7,88, SlanaJ);
             case 1:
-                return new Jelo(1, "bananas.jpg", "Bananas","opis","sastojci",8,55 , SlatkaJ);
+                return new Jelo(1, "bananas.jpg", "Bananas","pecena banana","jaja,brasno,secer,platano",8,55 , SlatkaJ);
             case 2:
-                return new Jelo(2, "oranges.jpg", "Burito", "opis","sastojci",44,677 , LjutaJ);
+                return new Jelo(2, "burito.jpg", "Burito", "sendvic u tortilji","tortilja,meso,cili",44,677 , LjutaJ);
             default:
                 return null;
         }
