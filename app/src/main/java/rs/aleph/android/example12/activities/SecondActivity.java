@@ -1,17 +1,12 @@
 package rs.aleph.android.example12.activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.graphics.drawable.Drawable;
-import java.io.InputStream;
 import java.io.InputStream;
 import java.io.IOException;
 import java.util.List;
@@ -28,7 +23,7 @@ public class SecondActivity extends Activity {
         // Each lifecycle method should call the method it overrides
         super.onCreate(savedInstanceState);
         // setContentView method draws UI
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_second_relative);
 
         // Shows a toast message (a pop-up message)
      //   Toast toast = Toast.makeText(getBaseContext(), "Activity.onCreate()", Toast.LENGTH_SHORT);
