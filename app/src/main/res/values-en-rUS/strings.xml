@@ -6,4 +6,8 @@
     <string name="open_browser">Open Web Browser</string>
     <string name="start_2activity">Start an ActivityT</string>
     <string name="open_camera">Open Camera</string>
+    <string name="fragment_detal_action_delete" />
+    <string name="fragment_detal_action_update" />
+    <string name="fragment_master_action_create" />
+    <string name="activity_first_toolbar_title" />
 </resources>

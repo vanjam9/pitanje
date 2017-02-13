@@ -2,11 +2,16 @@ package rs.aleph.android.example12.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.graphics.drawable.Drawable;
+import android.widget.Toast;
+
 import java.io.InputStream;
 import java.io.IOException;
 import java.util.List;
@@ -14,7 +19,7 @@ import java.util.List;
 import rs.aleph.android.example12.R;
 
 // Each activity extends Activity class
-public class SecondActivity extends Activity {
+public class SecondActivity extends AppCompatActivity {
 
     // onCreate method is a lifecycle method called when he activity is starting
     @Override
@@ -23,7 +28,7 @@ public class SecondActivity extends Activity {
         // Each lifecycle method should call the method it overrides
         super.onCreate(savedInstanceState);
         // setContentView method draws UI
-        setContentView(R.layout.activity_second_relative);
+        setContentView(R.layout.activity_second_linear);
 
         // Shows a toast message (a pop-up message)
      //   Toast toast = Toast.makeText(getBaseContext(), "Activity.onCreate()", Toast.LENGTH_SHORT);
@@ -77,6 +82,32 @@ public class SecondActivity extends Activity {
                 tvCena.setText(Double.toString(JeloProvajder.getJeloById(position).getCena()));
 
                 }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // onOptionsItemSelected method is called whenever an item in the Toolbar is selected.
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_create:
+                Toast.makeText(this, "Action " + getString(R.string.fragment_master_action_create) + " executed.", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_update:
+                Toast.makeText(this, "Action " + getString(R.string.fragment_detal_action_update) + " executed.", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_delete:
+                Toast.makeText(this, "Action " + getString(R.string.fragment_detal_action_delete) + " executed.", Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
     // onRestart method is a lifecycle method called after onStop when the current activity is
     // being re-displayed to the user
    // @Override
