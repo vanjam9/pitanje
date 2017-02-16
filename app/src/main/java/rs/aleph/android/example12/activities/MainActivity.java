@@ -2,8 +2,11 @@ package rs.aleph.android.example12.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -52,7 +55,19 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
+    private DrawerLayout drawerLayout;
+    private ListView drawerList;
+    private ActionBarDrawerToggle drawerToggle;
+    private RelativeLayout drawerPane;
+    private CharSequence drawerTitle;
+    private ArrayList<NavigationItem> drawerItems = new ArrayList<NavigationItem>();
 
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            selectItemFromDrawer(position);
+        }
+    }
 
 
 
@@ -72,6 +87,56 @@ public class MainActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(getBaseContext(), "MainActivity.onCreate()", Toast.LENGTH_SHORT);
         toast.show();
         // Loads fruits from array resource
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        final android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer);
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.show();
+        }
+
+        drawerItems.add(new NavigationItem(getString(R.string.drawer_home), getString(R.string.drawer_home_long), R.drawable.ic_action_product));
+        drawerItems.add(new NavigationItem(getString(R.string.drawer_settings), getString(R.string.drawer_settings_long), R.drawable.ic_action_settings));
+
+        drawerTitle = getTitle();
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        drawerList = (ListView) findViewById(R.id.navList);
+
+        // Populates NavigtionDrawer with options
+        drawerPane = (RelativeLayout) findViewById(R.id.drawerPane);
+        DrawerAdapter adapter = new DrawerAdapter(this, drawerItems);
+
+        // Sets a custom shadow that overlays the main content when NavigationDrawer opens
+        drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        drawerList.setOnItemClickListener(new DrawerItemClickListener());
+        drawerList.setAdapter(adapter);
+
+
+        drawerToggle = new ActionBarDrawerToggle(
+                this,                           /* host Activity */
+                drawerLayout,                   /* DrawerLayout object */
+                toolbar,                        /* nav drawer image to replace 'Up' caret */
+                R.string.drawer_open,           /* "open drawer" description for accessibility */
+                R.string.drawer_close           /* "close drawer" description for accessibility */
+        ) {
+            public void onDrawerClosed(View view) {
+                getSupportActionBar().setTitle(drawerTitle);
+                invalidateOptionsMenu();        // Creates call to onPrepareOptionsMenu()
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                getSupportActionBar().setTitle(drawerTitle);
+                invalidateOptionsMenu();        // Creates call to onPrepareOptionsMenu()
+            }
+        };
+
+
+
+
+
         final List<String> jelaNames = JeloProvajder.getJelaNames();
 
         // Creates an ArrayAdaptar from the array of String
@@ -117,5 +182,41 @@ public class MainActivity extends AppCompatActivity {
 
             return super.onOptionsItemSelected(item);
         }
-
+    @Override
+    public void setTitle(CharSequence title) {
+        getSupportActionBar().setTitle(title);
     }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
+//        Sync the toggle state after onRestoreInstanceState has occurred.
+        drawerToggle.syncState();
+    }
+
+    // onConfigurationChanged method is called when the device configuration changes to pass configuration change to the drawer toggle
+    @Override
+    public void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+
+        // Pass any configuration change to the drawer toggle
+        drawerToggle.onConfigurationChanged(configuration);
+    }
+
+    private void selectItemFromDrawer(int position) {
+
+        if (position == 0) {
+            // FirstActivity is already shown
+            Toast.makeText(this,"Action "+getString(R.string.drawer_home)+"  executed.", Toast.LENGTH_SHORT).show();
+        } else if (position == 1) {
+            Intent settings = new Intent(MainActivity.this,SettingsActivity.class);
+            startActivity(settings);
+
+        }
+
+        drawerList.setItemChecked(position, true);
+        setTitle(drawerItems.get(position).getTitle());
+        drawerLayout.closeDrawer(drawerPane);
+    }
+}
