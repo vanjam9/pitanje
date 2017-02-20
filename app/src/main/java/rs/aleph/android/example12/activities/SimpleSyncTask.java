@@ -1,9 +1,17 @@
 package rs.aleph.android.example12.activities;
 
-import android.app.Activity;
+
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.List;
+
+import rs.aleph.android.example12.R;
 
 
 /**
@@ -22,12 +30,11 @@ import android.widget.Toast;
  */
 public class SimpleSyncTask extends AsyncTask<Void, Void, Void>{
 
-    private Activity activity;
-    private MainActivity.OnProductSelectedListener listener;
+    private MainActivity activity;
 
-    public SimpleSyncTask(Activity activity) {
+    public SimpleSyncTask(MainActivity activity) {
         this.activity = activity;
-        listener = (MainActivity.OnProductSelectedListener) activity;
+
     }
 
     /**
@@ -53,8 +60,28 @@ public class SimpleSyncTask extends AsyncTask<Void, Void, Void>{
 
         return null;
     }
+    private void fillProduct (){
+        final List<String> listaImena = JeloProvajder.getJelaNames();
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(activity, R.layout.list_item, listaImena);
+        ListView listView = (ListView) activity.findViewById(R.id.listaJela);
+        listView.setAdapter(arrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+                Intent intent = new Intent(activity,SecondActivity.class);
+                intent.putExtra("",i);
+                activity.startActivity(intent);
+            }
+        });
+    }
+
+
+
 
     /**
+     *
      *
      * Kada se posao koji se odvija u pozadini zavrsi, poziva se ova metoda
      * Ako je potrebno osloboditi resurse ili obrisati elemente koji vise ne trebaju.
@@ -62,5 +89,6 @@ public class SimpleSyncTask extends AsyncTask<Void, Void, Void>{
     @Override
     protected void onPostExecute(Void products) {
         Toast.makeText(activity, "Sync done", Toast.LENGTH_SHORT).show();
+        fillProduct();
     }
 }

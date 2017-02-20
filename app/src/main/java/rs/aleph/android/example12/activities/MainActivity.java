@@ -142,26 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        final List<String> jelaNames = JeloProvajder.getJelaNames();
 
-        // Creates an ArrayAdaptar from the array of String
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.list_item, jelaNames);
-        ListView listView = (ListView) findViewById(R.id.listaJela);
-
-        // Assigns ArrayAdaptar to ListView
-        listView.setAdapter(dataAdapter);
-
-        // Starts the SecondActivity and sends it the selected URL as an extra data
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                intent.putExtra("position", position);
-                startActivity(intent);
-            }
-
-
-        });
     }
 
         @Override
@@ -179,25 +160,14 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.action_update:
                     Toast.makeText(this, "Action " + getString(R.string.fragment_detal_action_update) + " executed.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Sinhronizacija pokrenuta u pozadini niti. dobro :)",Toast.LENGTH_SHORT).show();
+                    new SimpleSyncTask(MainActivity.this).execute();
                     break;
                 case R.id.action_delete:
                     Toast.makeText(this, "Action " + getString(R.string.fragment_detal_action_delete) + " executed.", Toast.LENGTH_SHORT).show();
                     break;
 
-                case R.id.action_refresh:
-                    Toast.makeText(this, "Sinhronizacija pokrenuta u pozadini niti. dobro :)",Toast.LENGTH_SHORT).show();
-
-                    break;
-                case R.id.action_add:
-                    try {
-                        Toast.makeText(MainActivity.this, "Sinhronizacija pokrenuta u glavnoj niti. Nije dobro :(",Toast.LENGTH_SHORT).show();
-                        Thread.sleep(7000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    break;
             }
-
             return super.onOptionsItemSelected(item);
         }
 
