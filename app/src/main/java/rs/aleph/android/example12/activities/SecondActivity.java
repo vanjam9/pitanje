@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +22,9 @@ import rs.aleph.android.example12.R;
 
 // Each activity extends Activity class
 public class SecondActivity extends AppCompatActivity {
+
+
+
 
     // onCreate method is a lifecycle method called when he activity is starting
     @Override
@@ -81,6 +85,13 @@ public class SecondActivity extends AppCompatActivity {
 
     TextView tvCena = (TextView) findViewById(R.id.tv_cena);
                 tvCena.setText(Double.toString(JeloProvajder.getJeloById(position).getCena()));
+
+
+
+
+
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

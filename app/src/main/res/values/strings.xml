@@ -22,4 +22,6 @@
     <string name="pref_sync_list" />
     <string name="pref_sync_summ" />
     <string name="pref_sync_title" />
-</resources>
+     <string name="fragment_detal_action_add" />
+     <string name="fragment_detal_action_refresh" />
+ </resources>

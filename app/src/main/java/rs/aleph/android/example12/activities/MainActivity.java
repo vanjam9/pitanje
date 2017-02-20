@@ -68,11 +68,13 @@ public class MainActivity extends AppCompatActivity {
             selectItemFromDrawer(position);
         }
     }
+    public interface OnProductSelectedListener {
+        void onProductSelected(int id);
+    }
+
+    OnProductSelectedListener listener;
 
 
-
-
-    // onCreate method is a lifecycle method called when he activity is starting
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -86,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
 
         Toast toast = Toast.makeText(getBaseContext(), "MainActivity.onCreate()", Toast.LENGTH_SHORT);
         toast.show();
+
+
+
         // Loads fruits from array resource
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -178,10 +183,51 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.action_delete:
                     Toast.makeText(this, "Action " + getString(R.string.fragment_detal_action_delete) + " executed.", Toast.LENGTH_SHORT).show();
                     break;
+
+                case R.id.action_refresh:
+                    Toast.makeText(this, "Sinhronizacija pokrenuta u pozadini niti. dobro :)",Toast.LENGTH_SHORT).show();
+
+                    break;
+                case R.id.action_add:
+                    try {
+                        Toast.makeText(MainActivity.this, "Sinhronizacija pokrenuta u glavnoj niti. Nije dobro :(",Toast.LENGTH_SHORT).show();
+                        Thread.sleep(7000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    break;
             }
 
             return super.onOptionsItemSelected(item);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @Override
     public void setTitle(CharSequence title) {
         getSupportActionBar().setTitle(title);
@@ -219,4 +265,9 @@ public class MainActivity extends AppCompatActivity {
         setTitle(drawerItems.get(position).getTitle());
         drawerLayout.closeDrawer(drawerPane);
     }
-}
+
+    }
+
+
+
+

@@ -20,4 +20,16 @@
         android:icon="@drawable/ic_action_update"
         app:showAsAction="always"  />
 
+
+    <item
+        android:id="@+id/action_refresh"
+        android:title="@string/fragment_detal_action_refresh"
+        android:icon="@drawable/ic_action_refresh"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/action_add"
+        android:title="@string/fragment_detal_action_add"
+        android:icon="@drawable/ic_action_add"
+        app:showAsAction="always" />
+
 </menu>

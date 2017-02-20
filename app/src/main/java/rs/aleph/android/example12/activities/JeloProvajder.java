@@ -25,7 +25,7 @@ public class JeloProvajder {
     public static List<String> getJelaNames() {
 
         List<String> names = new ArrayList<>();
-        names.add("jastog");
+        names.add("Jastog");
         names.add("Bananas");
         names.add("Burito");
         return names;
