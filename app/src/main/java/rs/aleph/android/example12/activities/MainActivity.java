@@ -89,7 +89,20 @@ public class MainActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(getBaseContext(), "MainActivity.onCreate()", Toast.LENGTH_SHORT);
         toast.show();
 
+        final List<String> listaJela = JeloProvajder.getJelaNames();
 
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_item, listaJela);
+        ListView listView = (ListView) findViewById(R.id.listaJela);
+        listView.setAdapter(arrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                intent.putExtra("",i);
+                startActivity(intent);
+            }
+        });
 
         // Loads fruits from array resource
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -160,8 +173,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.action_update:
                     Toast.makeText(this, "Action " + getString(R.string.fragment_detal_action_update) + " executed.", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(this, "Sinhronizacija pokrenuta u pozadini niti. dobro :)",Toast.LENGTH_SHORT).show();
-                    new SimpleSyncTask(MainActivity.this).execute();
+
                     break;
                 case R.id.action_delete:
                     Toast.makeText(this, "Action " + getString(R.string.fragment_detal_action_delete) + " executed.", Toast.LENGTH_SHORT).show();

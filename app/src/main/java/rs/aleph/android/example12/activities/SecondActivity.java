@@ -33,7 +33,7 @@ public class SecondActivity extends AppCompatActivity {
         // Each lifecycle method should call the method it overrides
         super.onCreate(savedInstanceState);
         // setContentView method draws UI
-        setContentView(R.layout.activity_second_relative);
+        setContentView(R.layout.activity_second_linear);
 
         // Shows a toast message (a pop-up message)
      //   Toast toast = Toast.makeText(getBaseContext(), "Activity.onCreate()", Toast.LENGTH_SHORT);
@@ -49,7 +49,7 @@ public class SecondActivity extends AppCompatActivity {
         //Toast toast = Toast.makeText(getBaseContext(), "Activity.onStart()", Toast.LENGTH_SHORT);
         //toast.show();
     //}
-        final int position = getIntent().getIntExtra("position", 0);
+        final int position = getIntent().getIntExtra("", 0);
 
         // Finds "ivImage" ImageView and sets "imageDrawable" property
         ImageView ivImage = (ImageView) findViewById(R.id.iv_image);
